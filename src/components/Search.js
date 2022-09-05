@@ -19,7 +19,14 @@ export class Search extends Component {
       .catch((err) => console.log(err));
   };
   onTextChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value }, this.apiCall);
+    const val = e.target.value;
+    this.setState({ [e.target.name]: val }, () => {
+      if (val === "") {
+        this.setState({ images: [] });
+      } else {
+        this.apiCall();
+      }
+    });
   };
   onAmountChange = (e) => {
     this.setState({ amount: e.target.value }, this.apiCall);
