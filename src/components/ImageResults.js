@@ -5,7 +5,13 @@ function ImageResults(props) {
   let imageListContent;
   const { images } = props;
   const [popView, setPopView] = useState(false);
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentImage, setCurrentImage] = useState("");
+  const [setBackdrop] = useState(false);
+
+  const handleRemove = () => {
+    setPopView(false);
+    setBackdrop(false);
+  };
 
   if (images) {
     imageListContent = (
@@ -17,6 +23,9 @@ function ImageResults(props) {
             onClick={() => {
               setCurrentImage(img.largeImageURL);
               setPopView(true);
+              setTimeout(() => {
+                setBackdrop(true);
+              }, 10);
             }}
           >
             <img src={img.largeImageURL} alt="" />
@@ -37,12 +46,23 @@ function ImageResults(props) {
   return (
     <>
       {popView ? (
-        <div className="pop-header" onClick={() => setPopView(false)}>
-          <img src={`${currentImage}`} alt="" />
-        </div>
+        <div onClick={handleRemove} className={"backdrop open"}></div>
+      ) : null}
+      <div onClick={handleRemove} className={popView ? "modal open" : "modal"}>
+        <img src={`${currentImage}`} alt="" />
+      </div>
+      <div>{imageListContent}</div>
+
+      {/* {popView ? (
+        <>
+          <div onClick={handleRemove} className={"backdrop open"} />
+          <div className="pop-header" onClick={handleRemove}>
+            <img src={`${currentImage}`} alt="" />
+          </div>
+        </>
       ) : (
         <div>{imageListContent}</div>
-      )}
+      )} */}
     </>
   );
 }
