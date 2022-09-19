@@ -32,6 +32,15 @@ select {
   box-shadow: 1px 1px 4px 0.1px #88888866;
 }
 
+.image-details {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.image-details h4 {
+  text-align: center;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: 33% 33% 33%;

@@ -30,10 +30,12 @@ function ImageResults(props) {
           >
             <img src={img.largeImageURL} alt="" />
             <div className="image-details">
-              {img.tags}{" "}
-              <span>
-                by <strong>{img.user}</strong>
-              </span>
+              <h4>
+                {img.tags}{" "}
+                <span>
+                  by <strong>{img.user}</strong>
+                </span>
+              </h4>
             </div>
           </div>
         ))}
@@ -52,17 +54,6 @@ function ImageResults(props) {
         <img src={`${currentImage}`} alt="" />
       </div>
       <div>{imageListContent}</div>
-
-      {/* {popView ? (
-        <>
-          <div onClick={handleRemove} className={"backdrop open"} />
-          <div className="pop-header" onClick={handleRemove}>
-            <img src={`${currentImage}`} alt="" />
-          </div>
-        </>
-      ) : (
-        <div>{imageListContent}</div>
-      )} */}
     </>
   );
 }
